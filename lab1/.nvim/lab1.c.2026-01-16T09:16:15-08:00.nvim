@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+  char *line = NULL;
+  size_t len = 0;
+  size_t nread;
+
+  printf("Please enter some text: ");
+  nread = getline(&line, &len, stdin);
+  printf("\nFull line: %s", line);
+
+  char *token, *saveptr;
+  char *str = line;
+
+  for (int i = 1;; i++, str = NULL) {
+    token = strtok_r(str, " ", &saveptr);
+    if (token == NULL) {
+      break;
+    }
+  }
+
+  free(line);
+  return 0;
+}
